@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Analysis Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Left panel -->
+    <aside class="panel panel-left">
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" class="field search-input" placeholder="Search indicators..." autocomplete="off">
+            <div id="searchDropdown" class="search-dropdown"></div>
+        </div>
+        <div id="cardsList" class="cards-list"></div>
+        <p class="empty-hint" id="emptyHint">No indicators added yet. Use the search box above to add one.</p>
+    </aside>
+
+    <!-- Right panel -->
+    <main class="panel panel-right">
+        <div class="top-bar">
+            <div class="controls-group">
+                <div class="segmented" id="chartTypeSwitch" style="--count: 2; --index: 0; width: 170px;">
+                    <span class="glider"></span>
+                    <button class="seg-option active" data-value="line">Line</button>
+                    <button class="seg-option" data-value="candle">Candle</button>
+                </div>
+
+                <div class="segmented" id="timeframeSwitch" style="--count: 5; --index: 0; width: 300px;">
+                    <span class="glider"></span>
+                    <button class="seg-option active" data-value="all">All time</button>
+                    <button class="seg-option" data-value="1y">1Y</button>
+                    <button class="seg-option" data-value="1m">1M</button>
+                    <button class="seg-option" data-value="1w">1W</button>
+                    <button class="seg-option" data-value="1d">1D</button>
+                </div>
+
+                <div class="stock-select" id="stockSelect">
+                    <button class="stock-btn" id="stockBtn" aria-haspopup="listbox">
+                        <span class="name"></span>
+                        <span class="ticker"></span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="stock-menu" id="stockMenu" role="listbox"></div>
+                </div>
+            </div>
+
+            <button class="upload-btn" id="uploadBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <span>Upload</span>
+            </button>
+            <input type="file" id="fileInput" accept=".csv,text/csv" hidden>
+        </div>
+
+        <div class="error-box" id="errorBox" role="alert" hidden></div>
+
+        <div class="plots-wrapper">
+            <div class="plot-box main-plot" id="mainPlot"><div class="empty-state" id="emptyState" hidden>No data files yet. Click Upload to add a CSV file.</div></div>
+            <div id="subPlotsContainer" class="sub-plots"></div>
+        </div>
+    </main>
+
+    <script src="chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
